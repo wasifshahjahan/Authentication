@@ -1,0 +1,22 @@
+﻿<!--{{token.access_token}}
+{{token.expires_in}}
+{{token.token_type}}
+{{token.userName}}-->
+<form class="form" (ngSubmit)="registerUser(userRegister)">
+    <div class="form-group">
+        <label>User Name :</label>
+        <input type="text" [(ngModel)]="userRegister.Email" name="Email" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Password :</label>
+        <input type="text" [(ngModel)]="userRegister.Password" name="Password" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Confirm Password :</label>
+        <input type="text" [(ngModel)]="userRegister.ConfirmPassword" name="ConfirmPassword" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-default" />
+    </div>
+</form> 
+
