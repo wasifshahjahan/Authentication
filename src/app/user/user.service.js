@@ -20,7 +20,7 @@ var UserService = (function () {
     function UserService(_http) {
         this._http = _http;
         this._baseUrl = 'http://localhost:51692/';
-        this._token = localStorage; //.token;
+        this._token = localStorage.getItem('token');
     }
     UserService.prototype.getPutHeaders = function () {
         var headers = new http_1.Headers();

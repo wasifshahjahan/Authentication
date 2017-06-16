@@ -20,12 +20,20 @@ var AuthGuard = (function () {
     }
     AuthGuard.prototype.canActivate = function () {
         var _this = this;
-        this.userService.getUserInfo().subscribe(function (data) {
-            _this.user = JSON.parse(data['_body']);
-        }, function (err) { _this.isAuthorize = false; });
-        if (this.user.Email)
-            return Promise.resolve(true);
-        this.router.navigate(['/login']);
+        console.log('call canActivate');
+        if (localStorage.getItem('token')) {
+            this.userService.getUserInfo().subscribe(function (data) {
+                _this.user = JSON.parse(data['_body']);
+            }, function (err) { _this.isAuthorize = false; }, function () {
+                //console.log(this.user.Email);
+                if (_this.user.Email) {
+                    _this.isAuthorize = true;
+                }
+            });
+        }
+        else {
+            this.router.navigate(['/login']);
+        }
         return Promise.resolve(this.isAuthorize);
     };
     return AuthGuard;

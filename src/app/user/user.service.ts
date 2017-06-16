@@ -13,7 +13,7 @@ import 'rxjs/add/observable/throw';
 export class UserService {
     private _baseUrl = 'http://localhost:51692/';
     constructor(private _http: Http) { }
-    private _token = localStorage;//.token;
+    private _token = localStorage.getItem('token');
     private getPutHeaders() {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');

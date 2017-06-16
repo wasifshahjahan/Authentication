@@ -9,12 +9,22 @@ export class AuthGuard implements CanActivate {
     user: IUser = { Email: '', HasRegistered: false, LoginProvider: '' };
     isAuthorize: boolean = false;
     canActivate(): Promise<boolean> {
-        this.userService.getUserInfo().subscribe(data => {
-            this.user = JSON.parse(data['_body']);
-        }, err => { this.isAuthorize = false });
-        if (this.user.Email)
-            return Promise.resolve(true);
-        this.router.navigate(['/login']);
+        console.log('call canActivate');
+        if (localStorage.getItem('token')) {
+            this.userService.getUserInfo().subscribe(data => {
+                this.user = JSON.parse(data['_body']);
+            }, err => { this.isAuthorize = false }, () => {
+                //console.log(this.user.Email);
+                if (this.user.Email) {
+                    this.isAuthorize = true
+                    // return Promise.resolve(true);
+                }
+            });
+        }
+        else {
+            this.router.navigate(['/login']);
+        }
         return Promise.resolve(this.isAuthorize);
     }
+    
 }

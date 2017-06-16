@@ -17,13 +17,14 @@ var routes = [
     {
         path: 'account', component: account_component_1.AccountComponent, children: [
             { path: 'register', component: register_component_1.RegisterComponent },
-            { path: 'login', component: login_component_1.LoginComponent, data: { title: "Route" } }
+            { path: 'login', component: login_component_1.LoginComponent, data: { title: "Route" } },
+            { path: 'user', component: user_component_1.UserComponent, canActivate: [auth_guard_1.AuthGuard] }
         ]
     },
     { path: '', redirectTo: '/account', pathMatch: 'full' },
     { path: 'register', component: register_component_1.RegisterComponent },
     { path: 'login', component: login_component_1.LoginComponent, data: { title: "Route" } },
-    { path: 'user', component: user_component_1.UserComponent, canActivate: [auth_guard_1.AuthGuard], }
+    { path: 'user', component: user_component_1.UserComponent, canActivate: [auth_guard_1.AuthGuard] }
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {
